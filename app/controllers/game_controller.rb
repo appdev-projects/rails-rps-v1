@@ -1,5 +1,9 @@
 class GameController < ApplicationController
   def rules
+    # The default response is HTML
+    respond_to do |format|
+      format.html # renders rules.html.erb
+    end
   end
 
   def rock

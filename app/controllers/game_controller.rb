@@ -1,55 +1,50 @@
 class GameController < ApplicationController
   def rules
-    # The default response is HTML
-    respond_to do |format|
-      format.html # renders rules.html.erb
-    end
+    render({ :template => "/rules" })
   end
 
   def rock
-    play("rock")
+    moves = ["rock", "paper", "scissors"]
+
+    @comp_move = moves.sample
+
+    if @comp_move == "rock"
+      @outcome = "We tied"
+    elsif @comp_move == "paper"
+      @outcome = "We lost"
+    else
+      @outcome = "We won"
+    end
+    render({ :template => "/rock" })
   end
 
   def paper
-    play("paper")
+    moves = ["rock", "paper", "scissors"]
+
+    @comp_move = moves.sample
+
+    if @comp_move == "rock"
+      @outcome = "We won"
+    elsif @comp_move == "paper"
+      @outcome = "We tied"
+    else
+      @outcome = "We lost"
+    end
+    render({ :template => "/paper" })
   end
 
   def scissors
-    play("scissors")
-  end
+    moves = ["rock", "paper", "scissors"]
 
-  private
+    @comp_move = moves.sample
 
-  def play(player_move)
-    # Available choices for the computer
-    choices = ["rock", "paper", "scissors"]
-    
-    # Computer makes a random choice
-    @computer_move = choices.sample
-    
-    # Determine the outcome
-    @outcome = determine_outcome(player_move, @computer_move)
-    
-    # Store player move for potential use in views
-    @player_move = player_move
-    
-    # Render the appropriate view template
-    render player_move
-  end
-
-  def determine_outcome(player_move, computer_move)
-    if player_move == computer_move
-      "It's a tie!"
-    elsif winning_move?(player_move, computer_move)
-      "You win!"
+    if @comp_move == "rock"
+      @outcome = "We lost"
+    elsif @comp_move == "paper"
+      @outcome = "We won"
     else
-      "You lose!"
+      @outcome = "We tied"
     end
-  end
-
-  def winning_move?(player_move, computer_move)
-    (player_move == "rock" && computer_move == "scissors") ||
-    (player_move == "paper" && computer_move == "rock") ||
-    (player_move == "scissors" && computer_move == "paper")
+    render({ :template => "/scissors" })
   end
 end

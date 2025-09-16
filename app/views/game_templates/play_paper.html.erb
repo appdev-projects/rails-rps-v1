@@ -1,0 +1,25 @@
+ <h2>
+      We played paper !
+  </h2>
+
+  <h2>
+    They played <%= @random_move%>!
+  </h2>
+
+   <% if @outcome == "won"%>
+    <h2 style="color: green">
+     We <%= @outcome%>!
+     </h2>
+  <% elsif @outcome == "lost"%>
+     <h2 style="color: red">
+     We <%= @outcome%>!
+     </h2>
+  <% else %>
+     <h2 style="color: red">
+     We <%= @outcome%>!
+     </h2>
+<% end %>
+
+<div>
+  <a href="/">Rules</a>
+  </div>

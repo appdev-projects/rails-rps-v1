@@ -1,5 +1,3 @@
-require "rails_helper"
-
 describe "root URL" do
   it "has a functional page", points: 2 do
     visit "/"
@@ -46,7 +44,7 @@ describe "root URL" do
     visit "/"
 
     expect { find("h1", :text => /Welcome\s+to\s+Rock-Paper-Scissors/i) }.to_not raise_error,
-      "Expected page to have an <h1> with the text 'Welcome to Rock-Paper-Scissors!', but didn't find one."
+      "Expected page to have an h1 element with the text 'Welcome to Rock-Paper-Scissors!', but didn't find one."
   end
 end
 
